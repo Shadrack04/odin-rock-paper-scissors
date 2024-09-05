@@ -1,4 +1,8 @@
 const optionButtons = document.querySelectorAll('.btn');
+const humanScoreEl = document.querySelector('.player-score');
+const computerScoreEl = document.querySelector('.computer-score');
+const message = document.querySelector('.message p');
+
 const choices = ['rock', 'paper', 'scissor'];
 let humanScore = 0;
 let computerScore = 0;
@@ -20,23 +24,26 @@ optionButtons.forEach(btn => {
 
 
 function playRound(humanChoice, computerChoice) {
-  console.log(humanChoice);
+  let output = '';
   switch (humanChoice) {
     case 'rock':
         switch (computerChoice) {
           case 'rock':
-              console.log("It's a tie");
+              output = "It's a tie";
+              updateScore();
               console.log(`You: ${humanScore} - Computer: ${computerScore}`);
             break;
 
           case 'paper':
-              console.log(`You lose! Paper beats Rock`);
+              output = `You lose! Paper beats Rock`;
               computerScore++;
+              updateScore();
               console.log(`You: ${humanScore} - Computer: ${computerScore}`);
             break;
           case 'scissor':
-              console.log('You Win! Rock beats Scissor');
+              output = 'You Win! Rock beats Scissor';
               humanScore++;
+              updateScore();
               console.log(`You: ${humanScore} - Computer: ${computerScore}`);
             break;
           
@@ -48,18 +55,21 @@ function playRound(humanChoice, computerChoice) {
       case 'paper':
         switch (computerChoice) {
           case 'rock':
-              console.log("You Win! Paper beats Rock");
+              output = "You Win! Paper beats Rock";
               humanScore++;
+              updateScore();
               console.log(`You: ${humanScore} - Computer: ${computerScore}`);
             break;
 
           case 'paper':
-              console.log("It's a tie");
+              output = "It's a tie";
+              updateScore();
               console.log(`You: ${humanScore} - Computer: ${computerScore}`);
             break;
           case 'scissor':
-              console.log('You Lose! Scissor beats Paper');
+              output = 'You Lose! Scissor beats Paper';
               computerScore++;
+              updateScore();
               console.log(`You: ${humanScore} - Computer: ${computerScore}`);
 
             break;
@@ -72,18 +82,21 @@ function playRound(humanChoice, computerChoice) {
       case 'scissor':
         switch (computerChoice) {
           case 'rock':
-              console.log("You Lose! Rock beats Scissor");
+              output = "You Lose! Rock beats Scissor";
               computerScore++;
+              updateScore();
               console.log(`You: ${humanScore} - Computer: ${computerScore}`);
             break;
 
           case 'paper':
-              console.log('You Win! Scissor beats Paper');
+              output = 'You Win! Scissor beats Paper';
               humanScore++;
+              updateScore();
               console.log(`You: ${humanScore} - Computer: ${computerScore}`);
             break;
           case 'scissor':
-              console.log("It's a tie");
+              output = "It's a tie";
+              updateScore();
               console.log(`You: ${humanScore} - Computer: ${computerScore}`);
             break;
           
@@ -95,6 +108,7 @@ function playRound(humanChoice, computerChoice) {
     default:
       break;
   }
+  message.textContent = output;
 }
 
 function getComputerChoice() {
@@ -109,3 +123,7 @@ function getHumanChoice() {
   return humanChoice.toLowerCase();
 }
 
+function updateScore() {
+  humanScoreEl.textContent = humanScore;
+  computerScoreEl.textContent = computerScore;
+}
