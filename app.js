@@ -9,13 +9,24 @@ let computerScore = 0;
 
 
 // const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+
 
 
 optionButtons.forEach(btn => {
   btn.addEventListener('click', (e)=> {
+    const computerSelection = getComputerChoice();
     const selected = e.target.textContent.toLowerCase();
+    if((humanScore + computerScore) >= 5) {
+      if(humanScore > computerScore) {
+        message.textContent = 'Human won the round';
+        return;
+      }else {
+        message.textContent = 'Computer won the round';
+        return;
+      }
+    }
     playRound(selected, computerSelection);
+    return;
     
   })
 })
