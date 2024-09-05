@@ -1,11 +1,23 @@
+const optionButtons = document.querySelectorAll('.btn');
 const choices = ['rock', 'paper', 'scissor'];
 let humanScore = 0;
 let computerScore = 0;
 
 
-const humanSelection = getHumanChoice();
+// const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
-playRound(humanSelection, computerSelection);
+
+
+optionButtons.forEach(btn => {
+  btn.addEventListener('click', (e)=> {
+    const selected = e.target.textContent.toLowerCase();
+    playRound(selected, computerSelection);
+    
+  })
+})
+
+
+
 
 function playRound(humanChoice, computerChoice) {
   console.log(humanChoice);
